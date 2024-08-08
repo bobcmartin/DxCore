@@ -79,7 +79,7 @@ menu.bodmode=BOD Mode Active/Sleeping (Bootload burn req'd)
 menu.WDTtimeout=WDT Timeout (Bootload burn req'd)
 menu.WDTwindow=WDT "window" (Bootload burn req'd)
 menu.eesave=Save EEPROM
-menu.eesavedd=Save EEPROM (Bootload burn req'd)
+#menu.eesavedd=Save EEPROM (Bootload burn req'd)
 menu.resetpin=Reset pin function (Bootload burn req'd)
 menu.resetupdipins=Reset and UPDI (Bootload burn req'd)
 menu.resetupdipinsopti=Reset and UPDI (Bootload burn req'd)
@@ -120,7 +120,8 @@ avrea.name=AVR EA-series (no bootloader)
 avrdaopti.name=AVR DA-series (Optiboot)
 avrdbopti.name=AVR DB-series (Optiboot)
 avrddopti.name=AVR DD-series (Optiboot)
-avrduopti.name=AVR DU-series (Optiboot)
+
+#avrduopti.name=AVR DU-series (Optiboot)
 #avrduusb.name=AVR DU-series with USB Bootloader TBD.
 #avreaopti.name=AVR EA-series (Optiboot)
 #avrebopti.name=AVR EB-series (Optiboot)
@@ -1256,60 +1257,7 @@ avrdd.menu.clock.12extclock.build.clocksource=2
 avrdd.menu.clock.8extclock=8 MHz ext. clock
 avrdd.menu.clock.8extclock.build.speed=8
 avrdd.menu.clock.8extclock.build.clocksource=2
-avrdd.menu.clock.28internal=28 MHz internal (overclocked)
-avrdd.menu.clock.28internal.build.speed=28
-avrdd.menu.clock.28internal.build.clocksource=0
-avrdd.menu.clock.32internal=32 MHz internal (overclocked)
-avrdd.menu.clock.32internal.build.speed=32
-avrdd.menu.clock.32internal.build.clocksource=0
-avrdd.menu.clock.25crystal=25 MHz crystal (slightly overclocked)
-avrdd.menu.clock.25crystal.build.speed=25
-avrdd.menu.clock.25crystal.build.clocksource=1
-avrdd.menu.clock.27crystal=27 MHz crystal (overclocked)
-avrdd.menu.clock.27crystal.build.speed=27
-avrdd.menu.clock.27crystal.build.clocksource=1
-avrdd.menu.clock.28crystal=28 MHz crystal (overclocked)
-avrdd.menu.clock.28crystal.build.speed=28
-avrdd.menu.clock.28crystal.build.clocksource=1
-avrdd.menu.clock.30crystal=30 MHz crystal (overclocked)
-avrdd.menu.clock.30crystal.build.speed=30
-avrdd.menu.clock.30crystal.build.clocksource=1
-avrdd.menu.clock.32crystal=32 MHz crystal (overclocked)
-avrdd.menu.clock.32crystal.build.speed=32
-avrdd.menu.clock.32crystal.build.clocksource=1
-avrdd.menu.clock.36crystal=36 MHz crystal (highly overclocked)
-avrdd.menu.clock.36crystal.build.speed=36
-avrdd.menu.clock.36crystal.build.clocksource=1
-avrdd.menu.clock.40crystal=40 MHz crystal (highly overclocked)
-avrdd.menu.clock.40crystal.build.speed=40
-avrdd.menu.clock.40crystal.build.clocksource=1
-avrdd.menu.clock.48crystal=48 MHz crystal (Are you nuts?!)
-avrdd.menu.clock.48crystal.build.speed=40
-avrdd.menu.clock.48crystal.build.clocksource=1
-avrdd.menu.clock.25extclock=25 MHz ext. clock (slightly overclocked)
-avrdd.menu.clock.25extclock.build.speed=25
-avrdd.menu.clock.25extclock.build.clocksource=2
-avrdd.menu.clock.27extclock=27 MHz ext. clock (overclocked)
-avrdd.menu.clock.27extclock.build.speed=27
-avrdd.menu.clock.27extclock.build.clocksource=2
-avrdd.menu.clock.28extclock=28 MHz ext. clock (overclocked)
-avrdd.menu.clock.28extclock.build.speed=28
-avrdd.menu.clock.28extclock.build.clocksource=2
-avrdd.menu.clock.30extclock=30 MHz ext. clock (overclocked)
-avrdd.menu.clock.30extclock.build.speed=30
-avrdd.menu.clock.30extclock.build.clocksource=2
-avrdd.menu.clock.32extclock=32 MHz ext. clock (overclocked)
-avrdd.menu.clock.32extclock.build.speed=32
-avrdd.menu.clock.32extclock.build.clocksource=2
-avrdd.menu.clock.36extclock=36 MHz ext. clock (highly overclocked)
-avrdd.menu.clock.36extclock.build.speed=36
-avrdd.menu.clock.36extclock.build.clocksource=2
-avrdd.menu.clock.40extclock=40 MHz ext. clock (highly overclocked)
-avrdd.menu.clock.40extclock.build.speed=40
-avrdd.menu.clock.40extclock.build.clocksource=2
-avrdd.menu.clock.48extclock=48 MHz ext. clock (WAY overclocked)
-avrdd.menu.clock.48extclock.build.speed=48
-avrdd.menu.clock.48extclock.build.clocksource=2
+
 
 #----------------------------------------#
 # BrownOut detection (BOD) options       #
@@ -1344,10 +1292,10 @@ avrdd.menu.bodmode.endisholdwake.bootloader.bodmodebits=01100
 #----------------------------------------#
 # Retain EEPROM (EESAVE)                 #
 #________________________________________#
-avrdd.menu.eesavedd.enable=EEPROM retained
-avrdd.menu.eesavedd.enable.bootloader.eesavebit=1
-avrdd.menu.eesavedd.disable=EEPROM not retained
-avrdd.menu.eesavedd.disable.bootloader.eesavebit=0
+avrdd.menu.eesave.enable=EEPROM retained
+avrdd.menu.eesave.enable.bootloader.eesavebit=1
+avrdd.menu.eesave.disable=EEPROM not retained
+avrdd.menu.eesave.disable.bootloader.eesavebit=0
 
 #----------------------------------------#
 # Reset pin as INPUT, UPDI as I/O        #
@@ -1582,7 +1530,7 @@ avrdu.build.text_section_start=.text=0x0
 avrdu.build.defaultswaps=
 avrdu.build.extra_flags= {bootloader.appspm} {build.defaultswaps}
 avrdu.build.export_merged_output=false
-avrdu.build.highestcb=B2
+avrdu.build.highestcb=B1
 avrdu.build.printf=
 avrdu.build.flmapopts=
 avrdu.build.attachmode=-DCORE_ATTACH_ALL
@@ -1622,74 +1570,85 @@ avrdu.build.appspmabr=.spm{bootloader.CODESIZE}
 # 14/20-pin parts get default millis     #
 # changed just like tinyAVRs do          #
 #________________________________________#
-avrdu.menu.chip.avr64du32=AVR64DD32
-avrdu.menu.chip.avr64du28=AVR64DD28
-avrdu.menu.chip.avr64du20=AVR64DD20
-avrdu.menu.chip.avr64du14=AVR64DD14
-avrdu.menu.chip.avr32du32=AVR32DD32
-avrdu.menu.chip.avr32du28=AVR32DD28
-avrdu.menu.chip.avr32du20=AVR32DD20
-avrdu.menu.chip.avr32du14=AVR32DD14
-avrdu.menu.chip.avr16du32=AVR16DD32
-avrdu.menu.chip.avr16du28=AVR16DD28
-avrdu.menu.chip.avr16du20=AVR16DD20
-avrdu.menu.chip.avr16du14=AVR16DD14
+avrdu.menu.chip.avr64du32=AVR64DU32
 avrdu.menu.chip.avr64du32.build.mcu=avr64du32
 avrdu.menu.chip.avr64du32.upload.maximum_size=65536
 avrdu.menu.chip.avr64du32.upload.maximum_data_size=8192
 avrdu.menu.chip.avr64du32.build.variant=32pin-duseries
-avrdu.menu.chip.avr64du32.build.highestcb=B2
+avrdu.menu.chip.avr64du32.build.highestcb=B1
+
+avrdu.menu.chip.avr64du28=AVR64DU28
 avrdu.menu.chip.avr64du28.build.mcu=avr64du28
 avrdu.menu.chip.avr64du28.upload.maximum_size=65536
 avrdu.menu.chip.avr64du28.upload.maximum_data_size=8192
 avrdu.menu.chip.avr64du28.build.variant=28pin-duseries
-avrdu.menu.chip.avr64du28.build.highestcb=B2
+avrdu.menu.chip.avr64du28.build.highestcb=B1
+
+avrdu.menu.chip.avr64du20=AVR64DU20
 avrdu.menu.chip.avr64du20.build.mcu=avr64du20
 avrdu.menu.chip.avr64du20.upload.maximum_size=65536
 avrdu.menu.chip.avr64du20.upload.maximum_data_size=8192
 avrdu.menu.chip.avr64du20.build.highestcb=B1
 avrdu.menu.chip.avr64du20.build.variant=20pin-duseries
 avrdu.menu.chip.avr64du20.build.defaultswaps=-DMUX_DEFAULT_USART1=2
+
+avrdu.menu.chip.avr64du14=AVR64DU14
 avrdu.menu.chip.avr64du14.build.mcu=avr64du14
 avrdu.menu.chip.avr64du14.upload.maximum_size=65536
 avrdu.menu.chip.avr64du14.upload.maximum_data_size=8192
 avrdu.menu.chip.avr64du14.build.highestcb=B1
 avrdu.menu.chip.avr64du14.build.variant=14pin-duseries
 avrdu.menu.chip.avr64du14.build.defaultswaps=-DMUX_DEFAULT_USART1=2
+
+avrdu.menu.chip.avr32du32=AVR32DU32
 avrdu.menu.chip.avr32du32.build.mcu=avr32du32
 avrdu.menu.chip.avr32du32.upload.maximum_size=32768
 avrdu.menu.chip.avr32du32.upload.maximum_data_size=4096
 avrdu.menu.chip.avr32du32.build.variant=32pin-duseries
+
+avrdu.menu.chip.avr32du28=AVR32DU28
 avrdu.menu.chip.avr32du28.build.mcu=avr32du28
 avrdu.menu.chip.avr32du28.upload.maximum_size=32768
 avrdu.menu.chip.avr32du28.upload.maximum_data_size=4096
 avrdu.menu.chip.avr32du28.build.variant=28pin-duseries
+
+avrdu.menu.chip.avr32du20=AVR32DU20
 avrdu.menu.chip.avr32du20.build.mcu=avr32du20
 avrdu.menu.chip.avr32du20.upload.maximum_size=32768
 avrdu.menu.chip.avr32du20.upload.maximum_data_size=4096
 avrdu.menu.chip.avr32du20.build.highestcb=B1
 avrdu.menu.chip.avr32du20.build.variant=20pin-duseries
 avrdu.menu.chip.avr32du20.build.defaultswaps=-DMUX_DEFAULT_USART1=2
+
+avrdu.menu.chip.avr32du14=AVR32DU14
 avrdu.menu.chip.avr32du14.build.mcu=avr32du14
 avrdu.menu.chip.avr32du14.upload.maximum_size=32768
 avrdu.menu.chip.avr32du14.upload.maximum_data_size=4096
 avrdu.menu.chip.avr32du14.build.highestcb=B1
 avrdu.menu.chip.avr32du14.build.variant=14pin-duseries
 avrdu.menu.chip.avr32du14.build.defaultswaps=-DMUX_DEFAULT_USART1=2
+
+avrdu.menu.chip.avr16du32=AVR16DU32
 avrdu.menu.chip.avr16du32.build.mcu=avr16du32
 avrdu.menu.chip.avr16du32.upload.maximum_size=16384
 avrdu.menu.chip.avr16du32.upload.maximum_data_size=2048
 avrdu.menu.chip.avr16du32.build.variant=32pin-duseries
+
+avrdu.menu.chip.avr16du28=AVR16DU28
 avrdu.menu.chip.avr16du28.build.mcu=avr16du28
 avrdu.menu.chip.avr16du28.upload.maximum_size=16384
 avrdu.menu.chip.avr16du28.upload.maximum_data_size=2048
 avrdu.menu.chip.avr16du28.build.variant=28pin-duseries
+
+avrdu.menu.chip.avr16du20=AVR16DU20
 avrdu.menu.chip.avr16du20.build.mcu=avr16du20
 avrdu.menu.chip.avr16du20.upload.maximum_size=16384
 avrdu.menu.chip.avr16du20.upload.maximum_data_size=2048
 avrdu.menu.chip.avr16du20.build.highestcb=B1
 avrdu.menu.chip.avr16du20.build.variant=20pin-duseries
 avrdu.menu.chip.avr16du20.build.defaultswaps=-DMUX_DEFAULT_USART1=2
+
+avrdu.menu.chip.avr16du14=AVR16DU14
 avrdu.menu.chip.avr16du14.build.mcu=avr16du14
 avrdu.menu.chip.avr16du14.upload.maximum_size=16384
 avrdu.menu.chip.avr16du14.upload.maximum_data_size=2048
@@ -1792,10 +1751,10 @@ avrdu.menu.bodmode.endisholdwake.bootloader.bodmodebits=01100
 #----------------------------------------#
 # Retain EEPROM (EESAVE)                 #
 #________________________________________#
-#avrdu.menu.eesavedu.enable=EEPROM retained
-#avrdu.menu.eesavedu.enable.bootloader.eesavebit=1
-#avrdu.menu.eesavedu.disable=EEPROM not retained
-#avrdu.menu.eesavedu.disable.bootloader.eesavebit=0
+avrdu.menu.eesave.enable=EEPROM retained
+avrdu.menu.eesave.enable.bootloader.eesavebit=1
+avrdu.menu.eesave.disable=EEPROM not retained
+avrdu.menu.eesave.disable.bootloader.eesavebit=0
 
 #----------------------------------------#
 # Reset pin as INPUT, UPDI as I/O        #
@@ -1816,13 +1775,11 @@ avrdu.menu.resetupdipins.inputgpio.bootloader.resetpinbits=00
 avrdu.menu.millis.tcbhighest=Default (recommended)
 avrdu.menu.millis.disabled=Disabled (delay() only)
 avrdu.menu.millis.tcb0=TCB0
-avrdu.menu.millis.tcb1=TCB1 (default for 14/20 pins)
-avrdu.menu.millis.tcb2=TCB2 (default for 28/32 pins)
+avrdu.menu.millis.tcb1=TCB1 (default)
 avrdu.menu.millis.tca0=TCA0
 avrdu.menu.millis.tcbhighest.build.millistimer={build.highestcb}
 avrdu.menu.millis.tcb0.build.millistimer=B0
 avrdu.menu.millis.tcb1.build.millistimer=B1
-avrdu.menu.millis.tcb2.build.millistimer=B2
 avrdu.menu.millis.tca0.build.millistimer=A0
 avrdu.menu.millis.disabled.build.millistimer=NONE
 

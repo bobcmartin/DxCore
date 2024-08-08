@@ -400,8 +400,8 @@
   #define     _AVR_GENUS        _AVR_DX_SERIES
   #define     _AVR_FAMILY       "DU"
   #define     _AVR_CLOCKMODE    (0x1F)  // (predicted) Crap manual tuning, autotune, USB autotune for crystalless USB, crystal, clock select, supports RTC xtal.
-  //#define     _AVR_FLASHMODE   TBD
-  #error "The AVR DU-series is not yet available"
+  #define     _AVR_FLASHMODE   (2)
+  // #error "The AVR DU-series is not yet available"
 #elif defined(__AVR_EA__)
   #define     _AVR_GENUS        _AVR_EX_SERIES
   #define     _AVR_FAMILY       "EA"
@@ -883,7 +883,7 @@ That's how pessimistic I am left feeling about the prospects for errata fixes by
 
 
 #elif defined(__AVR_DU__) || (__AVR_EB__)
-  #error "Not yet supported. Please be patient waiting for support for new parts. 2"
+  #warning "AVR DU Errata not suported yet"
 #else
   #warning "Unrecognized part - even if this compiles, something is mondo wrong with your IDE or system. Behavior w/unknown part is undefined, and may result in demons flying out of your nose"
 #endif
