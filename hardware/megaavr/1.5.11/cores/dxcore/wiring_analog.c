@@ -286,9 +286,7 @@ inline __attribute__((always_inline)) void check_valid_resolution(uint8_t res) {
  *   function call, is not an analog reading but instead an error code.
  ****************************************************************************/
 #if defined(__AVR_EA__)
-  /*****************************************************
-  START 2-series analogRead/analogReadXxxx functions
-  *****************************************************/
+  
   #define SINGLE_ENDED 254
   inline bool analogReadResolution(uint8_t res) {
     check_valid_resolution(res);
@@ -375,20 +373,7 @@ inline __attribute__((always_inline)) void check_valid_resolution(uint8_t res) {
   uint8_t getAnalogSampleDuration() {
     return ADC0.CTRLE;
   }
-  /*NYI
-  uint8_t ADCOptions(uint8_t options) {
-    // 0b____CCFF
-    // FF = Freerunning mode
-    // Note that in freerun mode the ADC cannot be used for analogRead, you need to either define an ISR, or poll status and read the register directly
-    // 00 = do nothing.
-    // 01 = stop current conversion (very useful in freerun mode)
-    // 10 = turn off freerun
-    // 11 = turn on freerun
-    */
-   /*TODO: Figure out what happens if you have sign chopping on when it's not available. Does it blow up everything? Or is it just ignored?
-    return
-  }
-  */
+  
 
   void ADCPowerOptions(uint8_t options) {
     // 0b SSEEPPLL
@@ -612,10 +597,26 @@ inline __attribute__((always_inline)) void check_valid_resolution(uint8_t res) {
 /*---------------------------------------------------
  * END Ex-series analogRead/analogReadXxxx functions
  *--------------------------------------------------*/
+
+  
+#elif defined(__AVR_DU__)
+
+inline bool analogReadResolution(uint8_t res) {
+    // check_valid_resolution(res);
+      if(res == 8)
+        _analog_options = (_analog_options)
+      bool temp = (res == 8 || res == 10);
+      _analog_options = (_analog_options & 0xF0) | (temp ? res : 10); // just set that variable. The new ADC only wants to be told the resolution when it starts a conversion
+      return temp;
+  }
+
+
+
 #else
-  /*****************************************************
-  START Dx-series analogRead/analogReadXxxx functions
+/*****************************************************
+   Dx-series analogRead/analogReadXxxx functions
   *****************************************************/
+
 
 void analogReference(uint8_t mode) {
   check_valid_analog_ref(mode);

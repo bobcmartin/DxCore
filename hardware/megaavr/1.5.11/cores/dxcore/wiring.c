@@ -1815,20 +1815,22 @@ void nudge_millis(__attribute__((unused)) uint16_t nudgesize) {
 }
 
 /********************************* ADC ****************************************/
+/*
+
+*/
+
+#define ADC0
+#define __AVR_DA__ 
+#define F_CPU 12000000
+
+
 #if defined(ADC0)
-  void __attribute__((weak)) init_ADC0() {
+  void __attribute__((weak)) init_ADC0() 
+  {
     ADC_t* pADC;
     _fastPtr_d(pADC, &ADC0);
-    #if !defined(ADC0_PGACTRL)
-      #if F_CPU >= 48000000
-        pADC->CTRLC = ADC_PRESC_DIV48_gc; // 1 @ 48 MHz
-      #elif F_CPU >  40000000
-        pADC->CTRLC = ADC_PRESC_DIV32_gc; // 1.25 @ 40 MHz
-      #elif F_CPU >= 36000000
-        pADC->CTRLC = ADC_PRESC_DIV28_gc; // 1.286 @ 36 MHz
-      #elif F_CPU >  28000000
-        pADC->CTRLC = ADC_PRESC_DIV24_gc; // 1.33 @ 32 MHz, 1.
-      #elif F_CPU >= 24000000
+    #if defined ((__AVR_DA__) || (__AVR_DB__) || (__AVR_DD__))
+    #if F_CPU >= 24000000
         pADC->CTRLC = ADC_PRESC_DIV20_gc; // 1.2 @ 24, 1.25 @ 25, 1.4 @ 28  MHz
       #elif F_CPU >= 20000000
         pADC->CTRLC = ADC_PRESC_DIV16_gc; // 1.25 @ 20 MHz
@@ -1842,7 +1844,7 @@ void nudge_millis(__attribute__((unused)) uint16_t nudgesize) {
         pADC->CTRLC = ADC_PRESC_DIV2_gc;
       #endif
       pADC->SAMPCTRL = 14; // 16 ADC clock sampling time - should be about the same amount of *time* as originally?
-      // This is WAY conservative! We could drop it down...
+      
       pADC->CTRLD = ADC_INITDLY_DLY64_gc; // VREF can take 50uS to become ready, and we're running the ADC clock
       // at around 1 MHz, so we want 64 ADC clocks when we start up a new reference so we don't get bad readings at first
       /* Enable ADC */
@@ -1856,10 +1858,8 @@ void nudge_millis(__attribute__((unused)) uint16_t nudgesize) {
         pADC->COMMAND = 0x02;
       #endif
 
-    #else
-      /* On the 2-series maximum with internal reference is 3 MHz, so we will
-       * target highest speed that doesn't exceed that and 16 ADC clocks sample
-       * duration. */
+    #elif defined ((__AVR_DU__) || (__AVR_EA__))
+      
       #if F_CPU     > 32000000            // 36 MHz /14 = 2.57 MHz
         pADC->CTRLB  = ADC_PRESC_DIV10_gc; // 33 MHz /14 = 2.35 MHz
       #elif F_CPU  >= 30000000            // 32 MHz /12 = 2.67 MHz
@@ -1878,15 +1878,17 @@ void nudge_millis(__attribute__((unused)) uint16_t nudgesize) {
         pADC->CTRLB  = ADC_PRESC_DIV2_gc;  //  4 MHz / 2 = 2.00 MHz
       #endif                              //  1 MHz / 2 =  500 kHz
       pADC->CTRLE = 15; // 15.5 without PGA, 16 with PGA, corresponding to 7.75 or 8 us.
+      
       pADC->CTRLA = ADC_ENABLE_bm | ADC_LOWLAT_bm;
       pADC->PGACTRL = ADC_PGABIASSEL_75PCT_gc;
-      /* Note that we don't *enable* it automatically in init().
-       * 3/4th bias is good up to 4.5 MHz CLK_ADC, 15 ADC Clocks to sample the PGA
-       * up to 5 MHz, so within the regime of speeds that have to be compatible
-       * with internal references, we are in the clear there. */
+      
+    #else 
+      #warning "no valid ADC pprescaler"
+    
     #endif
-    analogReference(VDD);
-    DACReference(VDD);
+    
+    analogReference(VDD);       // to do
+    DACReference(VDD);          // to do
   }
 #endif
 

@@ -2,10 +2,10 @@
 //                                                                                    *INDENT-OFF*
 /*
  ###  #     # ####      ####  #   #      ###   ##
-#   # #     # #   #     #   # #   #        # #  #           #
-#####  #   #  ####      #   # #   #      ##    #   ### ###     ###
-#   #   # #   #  #      #   # #   #        #  #        #  # #  #  #
-#   #    #    #   #     ####  #####      ###  ####      ###  #  #  #
+#   # #     # #   #     #   # #   #        # #  #            #
+#####  #   #  ####      #   # #   #      ##    #       ###   #  ###
+#   #   # #   #  #      #   # #   #        #  #        #  #  #  #  #
+#   #    #    #   #     ####  #####      ###  ####     ###   #  #  #
 ===================================     ----------     #
 Variant Definition file for generic DU parts           #
 with 32 pins.
@@ -21,6 +21,9 @@ Include guard and include basic libraries. We are normally including this inside
 #include "timers.h"
 
 #define DU_32PIN_PINOUT
+
+#define NOT_A_PIN (0xFF)
+
 
  /*##  ### #   #  ###
  #   #  #  ##  # #
@@ -242,7 +245,7 @@ static const uint8_t A4  = PIN_A4;
 static const uint8_t A5  = PIN_A5;
 static const uint8_t A6  = PIN_A6;
 static const uint8_t A7  = PIN_A7;
-static const uint8_t A8  = NOT_A_PIN; // No PORTE
+static const uint8_t A8  = NOT_A_PIN; 
 static const uint8_t A9  = NOT_A_PIN;
 static const uint8_t A10 = NOT_A_PIN;
 static const uint8_t A11 = NOT_A_PIN;
