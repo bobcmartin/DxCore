@@ -1825,67 +1825,7 @@ void nudge_millis(__attribute__((unused)) uint16_t nudgesize) {
 
 
 #if defined(ADC0)
-  void __attribute__((weak)) init_ADC0() 
-  {
-    ADC_t* pADC;
-    _fastPtr_d(pADC, &ADC0);
-    #if defined ((__AVR_DA__) || (__AVR_DB__) || (__AVR_DD__))
-    #if F_CPU >= 24000000
-        pADC->CTRLC = ADC_PRESC_DIV20_gc; // 1.2 @ 24, 1.25 @ 25, 1.4 @ 28  MHz
-      #elif F_CPU >= 20000000
-        pADC->CTRLC = ADC_PRESC_DIV16_gc; // 1.25 @ 20 MHz
-      #elif F_CPU >  12000000
-        pADC->CTRLC = ADC_PRESC_DIV12_gc; // 1 @ 12, 1.333 @ 16 MHz
-      #elif F_CPU >= 8000000
-        pADC->CTRLC = ADC_PRESC_DIV8_gc;  // 1-1.499 between 8 and 11.99 MHz
-      #elif F_CPU >= 4000000
-        pADC->CTRLC = ADC_PRESC_DIV4_gc;  // 1 MHz
-      #else  // 1 MHz / 2 = 500 kHz - the lowest setting
-        pADC->CTRLC = ADC_PRESC_DIV2_gc;
-      #endif
-      pADC->SAMPCTRL = 14; // 16 ADC clock sampling time - should be about the same amount of *time* as originally?
-      
-      pADC->CTRLD = ADC_INITDLY_DLY64_gc; // VREF can take 50uS to become ready, and we're running the ADC clock
-      // at around 1 MHz, so we want 64 ADC clocks when we start up a new reference so we don't get bad readings at first
-      /* Enable ADC */
-      pADC->CTRLA = ADC_ENABLE_bm | ADC_RESSEL_10BIT_gc;
-      // start at 10 bit for compatibuility with existing code.
-
-      #if (defined(__AVR_DA__) && (!defined(NO_ADC_WORKAROUND)))
-        // That may become defined when DA-series silicon is available with the fix
-        pADC->MUXPOS = 0x40;
-        pADC->COMMAND = 0x01;
-        pADC->COMMAND = 0x02;
-      #endif
-
-    #elif defined ((__AVR_DU__) || (__AVR_EA__))
-      
-      #if F_CPU     > 32000000            // 36 MHz /14 = 2.57 MHz
-        pADC->CTRLB  = ADC_PRESC_DIV10_gc; // 33 MHz /14 = 2.35 MHz
-      #elif F_CPU  >= 30000000            // 32 MHz /12 = 2.67 MHz
-        pADC->CTRLB  = ADC_PRESC_DIV12_gc; // 30 MHz /12 = 2.50 MHz
-      #elif F_CPU  >= 24000000            // 25 MHz /10 = 2.50 MHz
-        pADC->CTRLB  = ADC_PRESC_DIV10_gc; // 24 MHz /10 = 2.40 MHz
-      #elif F_CPU  >= 20000000
-        pADC->CTRLB  = ADC_PRESC_DIV8_gc;  // 20 MHz / 8 = 2.50 MHz
-      #elif F_CPU  >= 16000000
-        pADC->CTRLB  = ADC_PRESC_DIV6_gc;  // 16 MHz / 6 = 2.67 MHz
-      #elif F_CPU  >= 12000000
-        pADC->CTRLB  = ADC_PRESC_DIV4_gc;  // 12 MHz / 4 = 3.00 MHz
-      #elif F_CPU  >=  6000000            // 10 MHz / 4 = 2.50 MHz
-        pADC->CTRLB  = ADC_PRESC_DIV4_gc;  //  8 MHz / 4 = 2.00 MHz
-      #else                               //  5 MHz / 2 = 2.50 MHz
-        pADC->CTRLB  = ADC_PRESC_DIV2_gc;  //  4 MHz / 2 = 2.00 MHz
-      #endif                              //  1 MHz / 2 =  500 kHz
-      pADC->CTRLE = 15; // 15.5 without PGA, 16 with PGA, corresponding to 7.75 or 8 us.
-      
-      pADC->CTRLA = ADC_ENABLE_bm | ADC_LOWLAT_bm;
-      pADC->PGACTRL = ADC_PGABIASSEL_75PCT_gc;
-      
-    #else 
-      #warning "no valid ADC pprescaler"
-    
-    #endif
+ 
     
     analogReference(VDD);       // to do
     DACReference(VDD);          // to do
