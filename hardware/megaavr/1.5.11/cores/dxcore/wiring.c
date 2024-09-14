@@ -1509,7 +1509,8 @@ __attribute__ ((noinline)) void _delayMicroseconds(unsigned int us) {
   // return = 4 cycles
 }
 
-void init() {
+void init(void)
+ {
   // this is called by main() before setup() - configures the on-chip peripherals.
   #if ((defined(DB_28_PINS) || defined(DB_32_pins)) && !defined(NO_PIN_PD0_BUG))
     // PD0 does not exist on these parts - VDDIO2 took it's (physical) spot.
@@ -1518,10 +1519,7 @@ void init() {
   #endif
   init_clock();
   init_timers();
-  #if defined(ADC0)
-    init_ADC0();
-  #endif
-
+  init_ADC0();
   #ifndef MILLIS_USE_TIMERNONE
     init_millis();
   #endif

@@ -2,8 +2,16 @@
 #include "wiring_private.h"
 #include "util/delay.h"
 
+#ifndef F_CPU
+  #error "F_CPU not defined. F_CPU must always be defined as the clock frequency in Hz"
+#endif
+#ifndef CLOCK_SOURCE
+  #error "CLOCK_SOURCE not defined. Must be 0 for internal, 1 for crystal, or 2 for external clock"
+#endif
+ 
 
- #if defined ((__AVR_DU__) || (__AVR_EA__))
+ #if defined ((__AVR_EA__))
+ #pragma message "using AVR EA adc"
   void __attribute__((weak)) init_ADC0() 
   {
     ADC_t* pADC;
@@ -30,5 +38,14 @@
       pADC->CTRLA = ADC_ENABLE_bm | ADC_LOWLAT_bm;
       pADC->PGACTRL = ADC_PGABIASSEL_75PCT_gc;
   }
+
+#elif
+  #pragma message "AVR EA ADC block not selected"
+  void __attribute__((weak)) init_ADC0() 
+    {
+        return();
+
+    }
+
 #endif
       
